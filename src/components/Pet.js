@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 class Pet extends React.Component {
   handleClick = () => {
-    this.props.onAdoptPet(this.props.pet.id)
-  }
+    this.props.onAdoptPet(this.props.pet.id);
+  };
 
   render() {
     return (
@@ -11,7 +11,7 @@ class Pet extends React.Component {
         <div className="content">
           <a className="header">
             {this.props.pet.name}
-            {this.props.pet.gender === 'female' ? '♀' : '♂'} 
+            {this.props.pet.gender === "female" ? "♀" : "♂"}
           </a>
           <div className="meta">
             <span className="date">{this.props.pet.type}</span>
@@ -22,15 +22,17 @@ class Pet extends React.Component {
           </div>
         </div>
         <div className="extra content">
-          {
-            this.props.pet.isAdopted ?
-            <button className="ui disabled button">Already adopted</button> :
-            <button className="ui primary button" onClick={this.handleClick}>Adopt pet</button>
-          }
+          {this.props.pet.isAdopted ? (
+            <button className="ui disabled button">Already adopted</button>
+          ) : (
+            <button className="ui primary button" onClick={this.handleClick}>
+              Adopt pet
+            </button>
+          )}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Pet
+export default Pet;

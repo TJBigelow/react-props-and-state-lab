@@ -1,48 +1,48 @@
-import React from 'react'
+import React from "react";
 
-import Filters from './Filters'
-import PetBrowser from './PetBrowser'
+import Filters from "./Filters";
+import PetBrowser from "./PetBrowser";
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
 
     this.state = {
       pets: [],
       filters: {
-        type: 'all'
-      }
-    }
+        type: "all",
+      },
+    };
   }
 
   onAdoptPet = (id) => {
-    const pets = this.state.pets
-    pets.find(pet => pet.id === id).isAdopted = true
+    const pets = this.state.pets;
+    pets.find((pet) => pet.id === id).isAdopted = true;
     this.setState({
-      pets: pets
-    })
-  }
+      pets: pets,
+    });
+  };
 
   onChangeType = (type) => {
     this.setState({
       filters: {
-        type: type
-      }
-    })
-  }
+        type: type,
+      },
+    });
+  };
 
   onFindPetsClick = () => {
-    const type = this.state.filters.type
-    if (type === 'all'){
-      fetch('/api/pets')
-      .then(resp => resp.json())
-      .then(pets => this.setState({pets: pets}))
+    const type = this.state.filters.type;
+    if (type === "all") {
+      fetch("/api/pets")
+        .then((resp) => resp.json())
+        .then((pets) => this.setState({ pets: pets }));
     } else {
       fetch(`/api/pets?type=${type}`)
-      .then(resp => resp.json())
-      .then(pets => this.setState({pets: pets}))
+        .then((resp) => resp.json())
+        .then((pets) => this.setState({ pets: pets }));
     }
-  }
+  };
 
   render() {
     return (
@@ -53,7 +53,10 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters onChangeType={this.onChangeType} onFindPetsClick={this.onFindPetsClick} />
+              <Filters
+                onChangeType={this.onChangeType}
+                onFindPetsClick={this.onFindPetsClick}
+              />
             </div>
             <div className="twelve wide column">
               <PetBrowser pets={this.state.pets} onAdoptPet={this.onAdoptPet} />
@@ -61,8 +64,8 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

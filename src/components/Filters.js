@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
 class Filters extends React.Component {
   handleChange = (e) => {
-    this.props.onChangeType(e.target.value)
-  }
+    this.props.onChangeType(e.target.value);
+  };
 
-  handleClick = (e) => {
-    this.props.onFindPetsClick()
-  }
+  handleClick = () => {
+    this.props.onFindPetsClick();
+  };
 
   render() {
     return (
@@ -23,11 +23,13 @@ class Filters extends React.Component {
         </div>
 
         <div className="field">
-          <button className="ui secondary button" onClick={this.handleClick}>Find pets</button>
+          <button className="ui secondary button" onClick={this.handleClick}>
+            Find pets
+          </button>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Filters
+export default Filters;
