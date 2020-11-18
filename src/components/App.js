@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   onAdoptPet = (id) => {
-    const pets = this.state.pets;
+    const { pets } = this.state;
     pets.find((pet) => pet.id === id).isAdopted = true;
     this.setState({
       pets: pets,
@@ -32,16 +32,11 @@ class App extends React.Component {
   };
 
   onFindPetsClick = () => {
-    const type = this.state.filters.type;
-    if (type === "all") {
-      fetch("/api/pets")
-        .then((resp) => resp.json())
-        .then((pets) => this.setState({ pets: pets }));
-    } else {
-      fetch(`/api/pets?type=${type}`)
-        .then((resp) => resp.json())
-        .then((pets) => this.setState({ pets: pets }));
-    }
+    const { type } = this.state.filters;
+    const url = "/api/pets" + (type === "all" ? "" : `?type=${type}`);
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((pets) => this.setState({ pets: pets }));
   };
 
   render() {
